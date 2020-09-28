@@ -75,15 +75,15 @@ function getId(result) {
 }
 
 //lista todos clientes
-router.get("/clientes", (req, res) => {
-  execSQLQuery("SELECT * FROM funcionario", res);
+router.get("/users", (req, res) => {
+  execSQLQuery("SELECT * FROM users", res);
 });
 
 //lista um cliente
-router.get("/clientes/:id?", (req, res) => {
+router.get("/users/:id?", (req, res) => {
   let filter = "";
   if (req.params.id) filter = " WHERE ID=" + parseInt(req.params.id);
-  execSQLQuery("SELECT * FROM Clientes " + filter, res);
+  execSQLQuery("SELECT * FROM users " + filter, res);
 });
 
 //lista um cliente pelo nome

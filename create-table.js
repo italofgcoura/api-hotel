@@ -11,9 +11,9 @@ function conectar() {
   connection.connect(function (err) {
     if (err) return console.log(err);
     console.log("conectou!");
-    // createDataBase(connection);
+    createDataBase(connection);
     useDatabase(connection);
-    // createTable(connection);
+    createTable(connection);
     addRows(connection);
   });
 }
@@ -24,7 +24,7 @@ conectar,
 
 
 function createDataBase(conn) {
-  const sql = `CREATE DATABASE IF NOT EXISTS hoteldatabase2;`;
+  const sql = `CREATE DATABASE IF NOT EXISTS hoteldatabase;`;
 
   conn.query(sql, function (error, results, fields) {
     if (error) return console.log(error);
@@ -33,7 +33,7 @@ function createDataBase(conn) {
 }
 
 function useDatabase(conn){
-  const sql = `USE hoteldatabase2;`;
+  const sql = `USE hoteldatabase;`;
 
   conn.query(sql, function (error, results, fields) {
     if (error) return console.log(error);
