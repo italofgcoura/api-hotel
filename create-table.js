@@ -10,18 +10,13 @@ const connection = mysql.createConnection({
 function conectar() {
   connection.connect(function (err) {
     if (err) return console.log(err);
-    console.log("conectou!");
-    createDataBase(connection);
-    useDatabase(connection);
-    createTable(connection);
-    addRows(connection);
+    // console.log("conectou!");
+    // createDataBase(connection);
+    // useDatabase(connection);
+    // createTable(connection);
+    // addRows(connection);
   });
 }
-
-module.exports = {
-conectar,
-};
-
 
 function createDataBase(conn) {
   const sql = `CREATE DATABASE IF NOT EXISTS hoteldatabase;`;
@@ -32,13 +27,13 @@ function createDataBase(conn) {
   });
 }
 
-function useDatabase(conn){
+function useDatabase(conn) {
   const sql = `USE hoteldatabase;`;
 
   conn.query(sql, function (error, results, fields) {
     if (error) return console.log(error);
     console.log("usando o banco de dados!");
-  });  
+  });
 }
 
 function createTable(conn) {
@@ -63,3 +58,8 @@ function addRows(conn) {
     conn.end(); //fecha a conexão
   });
 }
+
+
+module.exports = {
+  conectar,
+};
