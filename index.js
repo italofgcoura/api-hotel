@@ -94,15 +94,15 @@ router.get("/clientes/nome/:nome?", (req, res) => {
 });
 
 //delete de um cliente
-router.delete("/clientes/:id", (req, res) => {
-  execSQLQuery("DELETE FROM funcionario WHERE funcionarioID=" + parseInt(req.params.id), res);
+router.delete("/users/:id", (req, res) => {
+  execSQLQuery("DELETE FROM users WHERE ID=" + parseInt(req.params.id), res);
 });
 
 //adcionando um cliente
-router.post("/clientes", (req, res) => {
-  const quartoNumero = req.body.quartoNumero.substring(0, 150);
-  const quartoDisponivel = req.body.quartoDisponivel;
-  parseInt(quartoNumero);
+router.post("/users", (req, res) => {
+  const Nome = req.body.Nome.substring(0, 150);
+  const CPF = req.body.CPF;
+  // parseInt(quartoNumero);
 
   // const val1 = validations.userSchema.validate({
   //   nome: nome,
@@ -111,7 +111,7 @@ router.post("/clientes", (req, res) => {
 
   // if (!val1.err) {
   execSQLQuery(
-    `INSERT INTO quarto(quartoNumero, quartoDisponivel) VALUES('${quartoNumero}','${quartoDisponivel}')`,
+    `INSERT INTO users(Nome, CPF) VALUES('${Nome}','${CPF}')`,
     res
   );
   // } else {
@@ -120,12 +120,12 @@ router.post("/clientes", (req, res) => {
 });
 
 //update
-router.patch("/clientes/:id", (req, res) => {
+router.put("/users/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const nome = req.body.Nome.substring(0, 150);
-  const cpf = req.body.CPF.substring(0, 11);
+  const Nome = req.body.Nome.substring(0, 150);
+  const CPF = req.body.CPF.substring(0, 11);
   execSQLQuery(
-    `UPDATE Clientes SET Nome='${nome}', CPF='${cpf}' WHERE ID=${id}`,
+    `UPDATE users SET Nome='${Nome}', CPF='${CPF}' WHERE ID=${id}`,
     res
   );
 });
