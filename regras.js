@@ -1,16 +1,15 @@
 //verificação se quarto está ou não  ocupado
 
 module.exports = {
-    getAdmin(result) {
-        console.log(result)
-        result.forEach((element) => {
-            if (element.ADMIN == 1) {
-                element.ADMIN = "Admin"
+    checkIfAdmin(usersList) {
+        usersList.forEach((user) => {
+            if (user.ADMIN == 1) {
+                user.ADMIN = "Admin"
             }
             else {
-                element.ADMIN = "Usuário"
+                user.ADMIN = "Usuário"
             }
         });
-        return result;
+        return usersList;
     }
 }

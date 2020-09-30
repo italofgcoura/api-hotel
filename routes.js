@@ -29,13 +29,13 @@ function execSQLQuery(sqlQry, res) {
         database: "hoteldatabase",
     });
 
-    connection.query(sqlQry, function (error, results, fields) {
+    connection.query(sqlQry, function (error, usersList, fields) {
         if (error) {
             res.json(error);
         } else {
 
             //getAdmin transforma de 0 e 1 para admin e usuário
-            res.json(regras.getAdmin(results));
+            res.json(regras.checkIfAdmin(usersList));
 }
     });
 }
@@ -46,11 +46,6 @@ router.get("/users", (req, res) => {
     execSQLQuery("SELECT * FROM users", res);
 });
 
-
-
-
-
-
 //lista um cliente
 router.get("/users/:id?", (req, res) => {
     let filter = "";
@@ -58,12 +53,12 @@ router.get("/users/:id?", (req, res) => {
     execSQLQuery("SELECT * FROM users " + filter, res);
 });
 
-//lista um cliente pelo nome
-// router.get("/clientes/nome/:nome?", (req, res) => {
-//   let filter = "";
-//   if (req.params.nome) filter = " WHERE Nome=" + '"' + req.params.nome + '"';
-//   execSQLQuery("SELECT * FROM clientes" + filter, res);
-// });
+// lista um cliente pelo nome
+router.get("/users/nome/:nome?", (req, res) => {
+  let filter = "";
+  if (req.params.nome) filter = " WHERE Nome=" + '"' + req.params.nome + '"';
+  execSQLQuery("SELECT * FROM users" + filter, res);
+});
 
 //delete de um cliente
 router.delete("/users/:id", (req, res) => {
